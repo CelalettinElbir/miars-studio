@@ -72,6 +72,19 @@
         <div class="row g-4">
             {% for photos in project.photos.all %}
 
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <div class="single-portfolio">
+                    <a href="{{photos.image.url}}">
+                        <img src="{{photos.image.url}}" alt="Image" class="img-fluid">
+                        <div class="contents">
+                            <h3>Project One</h3>
+                            <div class="cat">Construction</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
 
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                 <div class="single-portfolio">
