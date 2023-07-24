@@ -9842,11 +9842,3 @@ a {
       content: "";
       height: 1px;
       background: #d3d8dc; }
-
-
-
-
-      .messages {
-        height: calc(100% - 60px);
-        overflow-y: scroll;
-      }
