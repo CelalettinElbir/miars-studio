@@ -1,3 +1,4 @@
+{% load static %}
 <div class="site-footer bg-light">
     <div class="container">
         <div class="row justify-content-between">
@@ -29,7 +30,10 @@
                             <h3 class="line-top">Hızlı Bağlantılar</h3>
                         </div>
                     </div>
-                    <div class="col-6 col-sm-6 col-md-4">
+
+                   
+
+                    <div class="col-6 col-sm-6 col-md-6">
                         <div class="widget">
                             <ul class="links list-unstyled">
                                 <li><a href="{% url 'index' %}">Ana Sayfa</a></li>
@@ -39,26 +43,10 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-6 col-sm-6 col-md-4">
-                        <div class="widget">
-                            <ul class="links list-unstyled">
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Kariyer</a></li>
-                                <li><a href="#">SSS</a></li>
-                                <li><a href="#">Gizlilik Politikası</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-6 col-sm-6 col-md-4">
-                        <div class="widget">
-                            <ul class="links list-unstyled">
-                                <li><a href="#">Basın</a></li>
-                                <li><a href="#">Destek</a></li>
-                                <li><a href="#">Süreçlerimiz</a></li>
-                                <li><a href="#">Müşteri Yorumları</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <div class="col-6 col-sm-6 col-md-6">
+                        <img src="{% static 'images/logo.jfif' %}" alt="Logo" class="img-fluid " >
+                    </div> 
+                  
                 </div>
             </div>
         </div>

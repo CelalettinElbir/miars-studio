@@ -1,5 +1,18 @@
 {% extends 'base/base.html' %}
 {% load static %}
+
+{% block extra_css %}
+<!-- Fancybox CSS - Using a specific version for stability -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css">
+<style>
+    /* Additional styles to ensure gallery items are clickable */
+    .single-portfolio a {
+        cursor: pointer;
+        display: block;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 
 <!-- Hero Section -->
@@ -58,11 +71,14 @@
             </div>
         </div>
 
-        <div class="row g-4">
+        <div class="row g-4 gallery-container">
             {% for photo in project.photos.all %}
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                 <div class="single-portfolio">
-                    <a href="{{ photo.image.url }}">
+                    <a 
+                       data-fancybox="gallery"
+                       data-src="{{ photo.image.url }}" 
+                       data-caption="{{ photo.caption|default:project.title }}">
                         <img src="{{ photo.image.url }}" alt="{{ photo.caption|default:project.title }}" class="img-fluid">
                         <div class="contents">
                             <h3>{{ project.title }}</h3>
@@ -75,5 +91,51 @@
         </div>
     </div>
 </div>
+
+{% endblock %}
+
+{% block extra_js %}
+<!-- jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+/>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        try {
+            console.log("Initializing Fancybox");
+
+            // Fancybox'ı başlat
+            Fancybox.bind('[data-fancybox="gallery"]', {
+                loop: true,
+                buttons: [
+                    "zoom",
+                    "slideShow",
+                    "fullScreen",
+                    "close"
+                ],
+                beforeLoad: function (instance, current) {
+                    console.log("Loading image:", current.src);
+                },
+                errorTpl: '<div class="fancybox-error"><p>Resim yüklenemedi.<br>Lütfen daha sonra tekrar deneyin.</p></div>'
+            });
+
+            console.log("Fancybox initialized successfully");
+        } catch (e) {
+            console.error("Error initializing Fancybox:", e);
+
+            // Eğer Fancybox yüklenmezse basit bir fallback mekanizması
+            document.querySelectorAll('[data-fancybox="gallery"]').forEach(el => {
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    window.open(this.getAttribute('data-src') || this.href, '_blank');
+                });
+            });
+
+            console.log("Fallback image viewer activated");
+        }
+    });
+</script>
 
 {% endblock %}
