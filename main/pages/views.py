@@ -5,11 +5,15 @@ from django.views.generic.detail import DetailView
 from django.views import View
 from django.contrib import messages
 from django.urls import reverse
+from .models import Main,About
 # Create your views here.
 
 
 def index(request):
-    return render(request, 'pages/index.html')
+
+
+    
+    return render(request, 'pages/index.html',context = {"main":Main.objects.first()})
 
 
 def about_us(request):

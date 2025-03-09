@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import project, project_photo, message, Main, About
+from .models import project, project_photo, message, Main,About
 from django.utils.html import format_html
 from django.forms import inlineformset_factory
 from django.db import models
@@ -58,7 +58,6 @@ class projectAdmin(admin.ModelAdmin):
 
 
 from django.contrib import admin
-from .models import About
 
 @admin.register(About)
 class AboutAdmin(admin.ModelAdmin):
