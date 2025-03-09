@@ -1,79 +1,79 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
-<div class="hero-2 overlay" style="background-image: url('/static/images/img_7.jpg')">
+<!-- Hero Section -->
+<div class="hero-2 overlay" style="background-image: url('{% if about.header_image %}{{ about.header_image.url }}{% else %}{% static "images/img_7.jpg" %}{% endif %}')">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-5 mx-auto ">
-                <h1 class="mb-5 text-center"><span>Hakkımızda</span></h1>
+            <div class="col-lg-5 mx-auto">
+                <h1 class="mb-5 text-center"><span>{{ about.title|default:"Hakkımızda" }}</span></h1>
             </div>
         </div>
     </div>
 </div>
 
-
+<!-- About Section -->
 <div class="section sec-4">
     <div class="container">
+        <!-- Main Content Row -->
         <div class="row border-bottom mb-5 pb-5 justify-content-between">
             <div class="col-lg-4 align-self-center mb-5">
-                <h2 class="heading mb-4">We create architectural designs</h2>
-                <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a
-                    paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                <h2 class="heading mb-4">{{ about.subtitle|default:"We create architectural designs" }}</h2>
+                <p>{{ about.main_content|safe }}</p>
             </div>
             <div class="col-lg-7">
                 <a href="https://www.youtube.com/watch?v=mwtbEGNABWU" class="video-wrap glightbox">
                     <span class="icon-play"></span>
-                    <img src="images/img_7.jpg" alt="Image" class="img-fluid">
+                    <img src="{% if about.header_image %}{{ about.header_image.url }}{% else %}{% static 'images/img_7.jpg' %}{% endif %}" alt="About Us Image" class="img-fluid">
                 </a>
             </div>
         </div>
-        <div class="row g-5">
-            <div class="col-lg-4">
 
+        <!-- Cards Row -->
+        <div class="row g-5">
+            <!-- Mission Card -->
+            <div class="col-lg-4">
                 <div class="d-flex custom-card">
                     <div class="img">
                         <i class="flaticon-compass"></i>
                     </div>
                     <div class="text">
-                        <h3 class="h6 fw-bold text-black">We provide best services</h3>
-                        <p class="text-black-50">Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut,
-                            doloribus officia ea molestias beatae laudantium.</p>
-                        <!-- <p>
-                            <a href="#" class="more-2">Learn more <span class="icon-arrow_forward"></span></a>
-                        </p> -->
+                        <h3 class="h6 fw-bold text-black">{{ about.mission_statement|default:"We provide best services"|truncatewords:5 }}</h3>
+                        <p class="text-black-50">{{ about.mission_statement|safe }}</p>
                     </div>
                 </div>
             </div>
+
+            <!-- Team Description Card -->
             <div class="col-lg-4">
                 <div class="d-flex custom-card">
                     <div class="img">
                         <i class="flaticon-plan"></i>
                     </div>
                     <div class="text">
-                        <h3 class="h6 fw-bold text-black">We provide best services</h3>
-                        <p class="text-black-50">Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut,
-                            doloribus officia ea molestias beatae laudantium.</p>
-                        <!-- <p>
-                            <a href="#" class="more-2">Learn more <span class="icon-arrow_forward"></span></a>
-                        </p> -->
+                        <h3 class="h6 fw-bold text-black">{{ about.working_hours|default:"We provide best services" }}</h3>
+                        <p class="text-black-50">{{ about.team_description|safe }}</p>
                     </div>
                 </div>
             </div>
+
+            <!-- Contact Card -->
             <div class="col-lg-4">
                 <div class="d-flex custom-card">
                     <div class="img">
                         <i class="flaticon-architect"></i>
                     </div>
                     <div class="text">
-                        <h3 class="h6 fw-bold text-black">We provide best services</h3>
-                        <p class="text-black-50">Delectus voluptatum distinctio quos eius excepturi sunt pariatur, aut,
-                            doloribus officia ea molestias beatae laudantium.</p>
-                     
+                        <h3 class="h6 fw-bold text-black">{{ about.phone|default:"Contact Us" }}</h3>
+                        <p class="text-black-50">
+                            {% if about.address %}Address: {{ about.address }}<br>{% endif %}
+                            {% if about.phone %}Phone: {{ about.phone }}<br>{% endif %}
+                            {% if about.email %}Email: {{ about.email }}<br>{% endif %}
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 {% endblock %}

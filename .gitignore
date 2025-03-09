@@ -1,0 +1,61 @@
+# Byte-compiled / cached
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+*.venv
+*.env
+
+# Django secret key veya çevre değişkenleri dosyaları
+.env
+*.envrc
+*.ini
+*.cfg
+*.local
+
+# Database dosyaları
+*.sqlite3
+db.sqlite3
+
+# Static ve media dosyaları
+/static/
+/media/
+
+# Logs ve debug çıktıları
+logs/
+*.log
+*.out
+*.err
+*.pid
+*.seed
+*.bak
+nohup.out
+
+# IDE ve editör dosyaları
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS ve Linux sistem dosyaları
+.DS_Store
+*.appledouble
+Thumbs.db
+
+# Pip veya paket yönetim dosyaları
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Node.js bağımlılıkları (eğer frontend kısmında kullanıyorsanız)
+node_modules/
+
+# Celery çalışma dosyaları
+celerybeat-schedule
+celerybeat.pid
+
+# Docker ve konteyner ilgili dosyalar
+*.dockerfile
+docker-compose.override.yml
