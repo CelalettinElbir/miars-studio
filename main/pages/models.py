@@ -13,36 +13,64 @@ class VerboseName(str):
         return self.func().decode(encoding, erros)
 
 
-class project(models.Model):
-    title = models.CharField(max_length=25)
-    description = models.TextField()
+class Project(models.Model):
+    # Temel Bilgiler
+    title = models.CharField(max_length=255, verbose_name="Proje Adı")
+    description = models.TextField(verbose_name="Proje Açıklaması")
+    location = models.CharField(max_length=255, verbose_name="Proje Lokasyonu", blank=True, null=True)
+    area = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Proje Alanı (m²)", blank=True, null=True)
+    year = models.PositiveIntegerField(
+        verbose_name="Proje Yılı",
+        blank=True, null=True
+    )
 
-    def __str__(self) -> str:
+    # Teknik Detaylar
+    architect = models.CharField(max_length=255, verbose_name="Mimar", blank=True, null=True)
+    client = models.CharField(max_length=255, verbose_name="Müşteri", blank=True, null=True)
+    status = models.CharField(
+        max_length=50,
+        choices=[
+            ('planning', 'Planlama Aşamasında'),
+            ('ongoing', 'Devam Ediyor'),
+            ('completed', 'Tamamlandı'),
+        ],
+        default='planning',
+        verbose_name="Proje Durumu"
+    )
+
+    # Ek Bilgiler
+    budget = models.DecimalField(max_digits=15, decimal_places=2, verbose_name="Proje Bütçesi", blank=True, null=True)
+    start_date = models.DateField(verbose_name="Başlangıç Tarihi", blank=True, null=True)
+    end_date = models.DateField(verbose_name="Bitiş Tarihi", blank=True, null=True)
+
+    def __str__(self):
         return self.title
 
     def get_default_image(self):
-        return self.photos.filter(is_default=True)
+        return self.photos.filter(is_default=True).first()
 
     class Meta:
         verbose_name = "Proje"
         verbose_name_plural = "Projeler"
 
 
-class project_photo(models.Model):
+class ProjectPhoto(models.Model):
     project = models.ForeignKey(
-        project, on_delete=models.CASCADE, related_name="photos")
-    image = models.ImageField(upload_to='photos/', null=True, blank=True)
-    is_default = models.BooleanField()
+        Project, on_delete=models.CASCADE, related_name="photos", verbose_name="Proje"
+    )
+    image = models.ImageField(upload_to='project_photos/', verbose_name="Fotoğraf")
+    is_default = models.BooleanField(default=False, verbose_name="Varsayılan Fotoğraf")
+    caption = models.CharField(max_length=255, verbose_name="Fotoğraf Açıklaması", blank=True, null=True)
 
     class Meta:
         verbose_name = "Proje Fotoğrafı"
         verbose_name_plural = "Proje Fotoğrafları"
 
-    def save(self, *args, **kawrgs):
-        super().save(*args, **kawrgs)
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
+        # Fotoğraf boyutlarını optimize etme
         img = Image.open(self.image.path)
-
         if img.height > 1280 or img.width > 720:
             output_size = (1280, 720)
             img.thumbnail(output_size)

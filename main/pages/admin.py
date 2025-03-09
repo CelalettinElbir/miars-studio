@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import project, project_photo, message, Main,About
+from .models import Project, ProjectPhoto, message, Main,About
 from django.utils.html import format_html
 from django.forms import inlineformset_factory
 from django.db import models
@@ -28,7 +28,7 @@ class messageAdmin(admin.ModelAdmin):
 
 
 class ProjectPhotosInline(admin.StackedInline):
-    model = project_photo
+    model = ProjectPhoto
 
 
 class projectAdmin(admin.ModelAdmin):
@@ -38,7 +38,7 @@ class projectAdmin(admin.ModelAdmin):
         ProjectPhotosInline,
     ]
     class Meta:
-        model = project
+        model = Project
 
     def show_photos(self, obj):
         result = ""
@@ -125,5 +125,5 @@ class MainAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(project, projectAdmin)
+admin.site.register(Project, projectAdmin)
 admin.site.register(message, messageAdmin)

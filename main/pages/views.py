@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
-from .models import project, message
+from .models import Project, message
 from django.views.generic.detail import DetailView
 from django.views import View
 from django.contrib import messages
@@ -10,9 +10,6 @@ from .models import Main,About
 
 
 def index(request):
-
-
-    
     return render(request, 'pages/index.html',context = {"main":Main.objects.first()})
 
 
@@ -39,10 +36,9 @@ class ContactUsView(View):
 
 
 class ProjectsListView(ListView):
-    model = project
+    model = Project
     template_name = 'pages/projects.html'
     context_object_name = 'projects'
-    paginate_by = 10
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -51,6 +47,6 @@ class ProjectsListView(ListView):
 
 
 class ProjectDetailView(DetailView):
-    model = project
+    model = Project
     template_name = 'pages/single_project.html'
     context_object_name = 'project'
