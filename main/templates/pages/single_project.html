@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<!-- Project Details Section -->
+<!-- Proje Detayları Bölümü -->
 <div class="section sec-3">
     <div class="container">
         <div class="row mb-5 justify-content-between">
@@ -26,35 +26,35 @@
                 <img src="{{ project.get_default_image.image.url }}" alt="{{ project.title }}" class="img-fluid">
             </div>
             <div class="col-lg-5">
-                <div class="heading">Description</div>
+                <div class="heading">Açıklama</div>
                 <p>{{ project.description }}</p>
             </div>
         </div>
 
-        <!-- Project Metadata -->
+        <!-- Proje Bilgileri -->
         <div class="row">
             <div class="col-sm-3 border-left">
-                <span class="text-black-50 d-block">Work Year:</span> {{ project.year }}
+                <span class="text-black-50 d-block">Proje Yılı:</span> {{ project.year }}
             </div>
             <div class="col-sm-3 border-left">
-                <span class="text-black-50 d-block">Client:</span> {{ project.client|default:"Belirtilmedi" }}
+                <span class="text-black-50 d-block">Müşteri:</span> {{ project.client|default:"Belirtilmedi" }}
             </div>
             <div class="col-sm-3 border-left">
-                <span class="text-black-50 d-block">Started:</span> {{ project.start_date|date:"d M Y"|default:"Belirtilmedi" }}
+                <span class="text-black-50 d-block">Başlangıç Tarihi:</span> {{ project.start_date|date:"d M Y"|default:"Belirtilmedi" }}
             </div>
             <div class="col-sm-3 border-left">
-                <span class="text-black-50 d-block">Finished:</span> {{ project.end_date|date:"d M Y"|default:"Belirtilmedi" }}
+                <span class="text-black-50 d-block">Bitiş Tarihi:</span> {{ project.end_date|date:"d M Y"|default:"Belirtilmedi" }}
             </div>
         </div>
     </div>
 </div>
 
-<!-- Project Photos Section -->
+<!-- Proje Fotoğrafları Bölümü -->
 <div class="section sec-5">
     <div class="container">
         <div class="row mb-5">
             <div class="col-lg-6">
-                <h2 class="heading">Proje Resimleri</h2>
+                <h2 class="heading">Proje Fotoğrafları</h2>
             </div>
         </div>
 
