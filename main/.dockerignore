@@ -13,6 +13,7 @@ __pycache__/
 .env.production.local
 venv/
 ENV/
-media/
-staticfiles/
+# media/ ve staticfiles/ dosyalarını Docker'a kopyalamamız gerekeceği için bunları çıkarıyoruz
 *.sqlite3
+nginx/
+init-letsencrypt.sh
