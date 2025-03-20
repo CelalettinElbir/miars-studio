@@ -32,71 +32,24 @@
         </div>
 
         <div class="row ">
-            {% for project in projects %}
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 d-flex justify-content-center">
-                <div class="single-portfolio">
-                    <a href = "{% url 'project-detail' project.id %}">
-                        <img src="{{ project.photos.first.image.url }}" alt="Image" class="img-fluid">
-                        <div class="contents">
-                            <h3>Project Two</h3>
-                            <div class="cat">Construction</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-
-            <!-- <div class="card bg-dark text-white">
-                    <div class="card-img-container">
-                        <img class="card-img" src="{{ project.photos.first.image.url }}" alt="Card image">
-                        <div class="card-overlay">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This     content is a little bit longer.</p>
-                            <p class="card-text">Last updated 3 mins ago</p>
-                        </div>
+            {% if projects %}
+                {% for project in projects %}
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4 d-flex justify-content-center">
+                    <div class="single-portfolio">
+                        <a href="{% url 'project-detail' project.id %}">
+                            <img src="{{ project.photos.first.image.url }}" alt="Image" class="img-fluid">
+                            <div class="contents">
+                                <h3>{{project.title}}</h3>
+                            </div>
+                        </a>
                     </div>
                 </div>
-            </div> -->
-
-            <!-- 
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                <div class="single-portfolio">
-                    <a href="{% url 'project-detail' project.id %}">
-                        {% if project.get_default_image %}
-                        <div class="image-wrapper">
-                            <img src="{{ project.get_default_image.first.image.url }}" alt="Image" class="">
-                        </div>
-                        {% else %}
-                        <div class="image-wrapper">
-                            <img src="{{ project.photos.first.image.url }}" alt="Image" class="">
-                        </div>
-                        {% endif %}
-                        <div class="contents">
-                            <h3>{{ project.title }}</h3>
-                            <div class="cat">{{ project.description }}</div>
-                        </div>
-                    </a>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 text-center">
+                    <h3>Henüz proje bulunmamaktadır.</h3>
                 </div>
-            </div>
- -->
-
-            <!-- 
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-
-                <div class="single-portfolio">
-                    <a href="project-single.html">
-                        <img src="images/img_4.jpg" alt="Image" class="img-fluid">
-                        <div class="contents">
-                            <h3>Project One</h3>
-                            <div class="cat">Construction</div>
-                        </div>
-                    </a>
-                </div>
-            </div> -->
-
-
-            {% endfor %}
+            {% endif %}
 
         </div>
     </div>

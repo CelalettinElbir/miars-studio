@@ -30,7 +30,16 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-jt!p!i6bge!7i!t89vq)z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '127.0.0.1 localhost [::1]').split()
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'miarsmimarlik.com www.miarsmimarlik.com').split()
+
+# HTTPS settings
+SECURE_SSL_REDIRECT = os.environ.get('SECURE_SSL_REDIRECT', 'True') == 'True'
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = os.environ.get('SESSION_COOKIE_SECURE', 'True') == 'True'
+CSRF_COOKIE_SECURE = os.environ.get('CSRF_COOKIE_SECURE', 'True') == 'True'
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 
 
 # Application definition
