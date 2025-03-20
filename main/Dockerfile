@@ -11,9 +11,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN python manage.py collectstatic --noinput
-RUN python manage.py migrate  # Veritabanı migrasyonlarını uygula
-
 EXPOSE 8000
+
+RUN chmod +x /app/entrypoint.prod.sh  
+
 
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "main.wsgi:application"]
