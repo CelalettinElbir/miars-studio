@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /static/scss/
+Disallow: /static/js/
+Disallow: /static/css/tiny-slider.css
+Disallow: /static/css/aos.css
+Disallow: /static/css/glightbox.min.css
+Disallow: /static/fonts/
+
+# Sitemap dosyası
+Sitemap: https://www.miarsmimarlik.com/sitemap.xml

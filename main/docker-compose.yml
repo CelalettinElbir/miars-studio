@@ -41,6 +41,8 @@ services:
       - ./nginx/certbot/conf:/etc/letsencrypt
     depends_on:
       - web
+    environment:
+      - NGINX_MAX_BODY=50M
 
   certbot:
     image: certbot/certbot

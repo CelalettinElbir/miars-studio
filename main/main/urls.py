@@ -14,15 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 from django.conf import settings 
 from django.conf.urls.static import static  
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import StaticViewSitemap, ProjectSitemap
+
+sitemaps = {
+    'static': StaticViewSitemap,
+    'projects': ProjectSitemap,
+}
 
 admin.site.site_header = 'Admin Paneli'
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("",include('pages.urls'))
-
+    path("", include('pages.urls')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
+
 if settings.DEBUG:  # new
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

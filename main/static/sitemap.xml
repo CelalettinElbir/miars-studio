@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- Ana Sayfa -->
+  <url>
+    <loc>https://www.miarsmimarlik.com/</loc>
+    <lastmod>2023-08-01T12:00:00+00:00</lastmod>
+    <priority>1.00</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <!-- Hakkımızda Sayfası -->
+  <url>
+    <loc>https://www.miarsmimarlik.com/about/</loc>
+    <lastmod>2023-08-01T12:00:00+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Projeler Sayfası -->
+  <url>
+    <loc>https://www.miarsmimarlik.com/projects/</loc>
+    <lastmod>2023-08-01T12:00:00+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
+  <!-- Hizmetler Sayfası -->
+  <url>
+    <loc>https://www.miarsmimarlik.com/services/</loc>
+    <lastmod>2023-08-01T12:00:00+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- İletişim Sayfası -->
+  <url>
+    <loc>https://www.miarsmimarlik.com/contact/</loc>
+    <lastmod>2023-08-01T12:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+
+  <!-- Blog Sayfası -->
+  <url>
+    <loc>https://www.miarsmimarlik.com/blog/</loc>
+    <lastmod>2023-08-01T12:00:00+00:00</lastmod>
+    <priority>0.60</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+</urlset>
