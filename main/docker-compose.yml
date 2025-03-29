@@ -32,11 +32,6 @@ services:
     restart: unless-stopped
     networks:
       - backend
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
 
   nginx:
     image: nginx:1.25-alpine
@@ -64,9 +59,11 @@ services:
     volumes:
       - ./nginx/certbot/www:/var/www/certbot
       - ./nginx/certbot/conf:/etc/letsencrypt
+      - /usr/bin/docker:/usr/bin/docker:ro
+      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - nginx
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --quiet --deploy-hook \"nginx -t && nginx -s reload\"; sleep 24h & wait $${!}; done;'"
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --quiet --post-hook \"docker exec $$(docker ps --filter 'name=main-nginx-1' --format '{{.ID}}') nginx -s reload\"; sleep 24h & wait $${!}; done;'"
     networks:
       - frontend
 
