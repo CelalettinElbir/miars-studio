@@ -7,6 +7,8 @@ services:
     volumes:
       - static_volume:/app/staticfiles
       - media_volume:/app/media
+      - ./staticfiles:/app/staticfiles
+      - ./media:/app/media
     env_file:
       - ./.env
     ports:
@@ -33,50 +35,11 @@ services:
     networks:
       - backend
 
-  nginx:
-    image: nginx:1.25-alpine
-    restart: always
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - static_volume:/home/app/staticfiles
-      - media_volume:/home/app/media
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./nginx/ssl:/etc/nginx/ssl
-      - ./nginx/certbot/www:/var/www/certbot
-      - ./nginx/certbot/conf:/etc/letsencrypt
-    depends_on:
-      - web
-    environment:
-      - NGINX_MAX_BODY=50M
-    networks:
-      - frontend
-      - backend
-
-  certbot:
-    image: certbot/certbot:latest
-    volumes:
-      - ./nginx/certbot/www:/var/www/certbot
-      - ./nginx/certbot/conf:/etc/letsencrypt
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    depends_on:
-      - nginx
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --quiet --post-hook \"docker compose exec nginx nginx -s reload\"; sleep 24h & wait $${!}; done;'"
-    networks:
-      - frontend
-
 networks:
   backend:
-    driver: bridge
-  frontend:
     driver: bridge
 
 volumes:
   postgres_data:
   static_volume:
   media_volume:
-
-
-
-  docker-compose run --rm certbot certonly --webroot --webroot-path=/var/www/certbot/ -d miarsmimarlik.com -d www.miarsmimarlik.com
