@@ -125,18 +125,18 @@ class Main(models.Model):
     # Hero Section
     hero_title = models.CharField(max_length=200, verbose_name="Hero Başlık")
     hero_subtitle = models.CharField(max_length=300, verbose_name="Hero Alt Başlık")
-    hero_background_image = models.ImageField(upload_to='main/', verbose_name="Hero Arkaplan Resmi")
-    hero_video_url = models.URLField(verbose_name="Hero Video URL")
+    hero_background_image = models.ImageField(upload_to='main/', verbose_name="Hero Arkaplan Resmi", blank=True, null=True)
+    hero_video_url = models.URLField(verbose_name="Hero Video URL", blank=True, null=True)
 
     # Section 1
     sec1_title = models.CharField(max_length=200, verbose_name="Bölüm 1 Başlık")
     sec1_content = models.TextField(verbose_name="Bölüm 1 İçerik")
-    sec1_image = models.ImageField(upload_to='main/', verbose_name="Bölüm 1 Resim")
+    sec1_image = models.ImageField(upload_to='main/', verbose_name="Bölüm 1 Resim", blank=True, null=True)
 
     # Section 2
     sec2_title = models.CharField(max_length=200, verbose_name="Bölüm 2 Başlık")
     sec2_content = models.TextField(verbose_name="Bölüm 2 İçerik")
-    sec2_image = models.ImageField(upload_to='main/', verbose_name="Bölüm 2 Resim")
+    sec2_image = models.ImageField(upload_to='main/', verbose_name="Bölüm 2 Resim", blank=True, null=True)
 
     # Section 3 (Services)
     sec3_title = models.CharField(max_length=200, verbose_name="Bölüm 3 Başlık")
@@ -145,19 +145,19 @@ class Main(models.Model):
     # Accordion Items
     accordion_interior_title = models.CharField(max_length=200, verbose_name="Interior Design Başlık")
     accordion_interior_content = models.TextField(verbose_name="Interior Design İçerik")
-    accordion_interior_image = models.ImageField(upload_to='main/', verbose_name="Interior Design Resim")
+    accordion_interior_image = models.ImageField(upload_to='main/', verbose_name="Interior Design Resim", blank=True, null=True)
 
     accordion_landscape_title = models.CharField(max_length=200, verbose_name="Landscape Design Başlık")
     accordion_landscape_content = models.TextField(verbose_name="Landscape Design İçerik")
-    accordion_landscape_image = models.ImageField(upload_to='main/', verbose_name="Landscape Design Resim")
+    accordion_landscape_image = models.ImageField(upload_to='main/', verbose_name="Landscape Design Resim", blank=True, null=True)
 
     accordion_engineering_title = models.CharField(max_length=200, verbose_name="Engineering Plan Başlık")
     accordion_engineering_content = models.TextField(verbose_name="Engineering Plan İçerik")
-    accordion_engineering_image = models.ImageField(upload_to='main/', verbose_name="Engineering Plan Resim")
+    accordion_engineering_image = models.ImageField(upload_to='main/', verbose_name="Engineering Plan Resim", blank=True, null=True)
 
     accordion_architecture_title = models.CharField(max_length=200, verbose_name="Architecture Design Başlık")
     accordion_architecture_content = models.TextField(verbose_name="Architecture Design İçerik")
-    accordion_architecture_image = models.ImageField(upload_to='main/', verbose_name="Architecture Design Resim")
+    accordion_architecture_image = models.ImageField(upload_to='main/', verbose_name="Architecture Design Resim", blank=True, null=True)
 
     def __str__(self):
         return self.hero_title
