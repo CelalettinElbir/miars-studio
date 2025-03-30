@@ -89,7 +89,7 @@ class message(models.Model):
     class Meta:
         verbose_name = "Mesaj"
         verbose_name_plural = lazy(
-            lambda: _('Articles ({})').format(message.objects.filter(is_read=False).count()), str)()
+            lambda: _('Mesajlar ({})').format(message.objects.filter(is_read=False).count()), str)()
 
     def __str__(self) -> str:
         return self.name + " " + self.subject
@@ -108,7 +108,11 @@ class About(models.Model):
     email = models.EmailField(blank=True, verbose_name="E-posta")
     working_hours = models.CharField(max_length=200, blank=True, verbose_name="Çalışma Saatleri")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Son Güncelleme")
-
+    values_title = models.CharField(max_length=200, blank=True, verbose_name="Değerler Başlığı")
+    values_section= models.TextField(blank=True, verbose_name="Değerler İçerik")
+    video_url = models.URLField(blank=True, null=True, verbose_name="Video URL")
+    video_image = models.ImageField(upload_to='about/', blank=True, null=True, verbose_name="Video Resmi")
+    
     def __str__(self):
         return self.title
 

@@ -78,6 +78,12 @@ class AboutAdmin(admin.ModelAdmin):
         ('Misyon ve Ekip', {
             'fields': ('mission_statement', 'team_description')
         }),
+        ('Değerler', {
+            'fields': ('values_title', 'values_section')
+        }),
+        ('Medya', {
+            'fields': ('video_url',"video_image")
+        }),
         ('İletişim Bilgileri', {
             'fields': ('address', 'phone', 'email', 'working_hours')
         }),
