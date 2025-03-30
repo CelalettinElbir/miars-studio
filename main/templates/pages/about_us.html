@@ -24,9 +24,9 @@
                 <p>{{ about.main_content|safe }}</p>
             </div>
             <div class="col-lg-7">
-                <a href="https://www.youtube.com/watch?v=mwtbEGNABWU" class="video-wrap glightbox">
+                <a href="{{about.video_url}}" class="video-wrap glightbox">
                     <span class="icon-play"></span>
-                    <img src="{% if about.header_image %}{{ about.header_image.url }}{% else %}{% static 'images/img_7.jpg' %}{% endif %}" alt="About Us Image" class="img-fluid">
+                    <img src="{% if about.video_image %}{{ about.video_image.url }}{% else %}{% static 'images/img_7.jpg' %}{% endif %}" alt="About Us Image" class="img-fluid">
                 </a>
             </div>
         </div>
@@ -40,7 +40,7 @@
                         <i class="flaticon-compass"></i>
                     </div>
                     <div class="text">
-                        <h3 class="h6 fw-bold text-black">{{ about.mission_statement|default:"We provide best services"|truncatewords:5 }}</h3>
+                        <h3 class="h6 fw-bold text-black">{{ about.mission_statement|truncatewords:5 }}</h3>
                         <p class="text-black-50">{{ about.mission_statement|safe }}</p>
                     </div>
                 </div>
@@ -59,19 +59,15 @@
                 </div>
             </div>
 
-            <!-- Contact Card -->
+            <!-- Values Card -->
             <div class="col-lg-4">
                 <div class="d-flex custom-card">
                     <div class="img">
                         <i class="flaticon-architect"></i>
                     </div>
                     <div class="text">
-                        <h3 class="h6 fw-bold text-black">{{ about.phone|default:"Contact Us" }}</h3>
-                        <p class="text-black-50">
-                            {% if about.address %}Address: {{ about.address }}<br>{% endif %}
-                            {% if about.phone %}Phone: {{ about.phone }}<br>{% endif %}
-                            {% if about.email %}Email: {{ about.email }}<br>{% endif %}
-                        </p>
+                        <h3 class="h6 fw-bold text-black">{{ about.values_title|default:"Değerlerimiz" }}</h3>
+                        <p class="text-black-50">{{ about.values_section|safe }}</p>
                     </div>
                 </div>
             </div>
@@ -100,7 +96,7 @@
                         </div>
                         <div>
                             <h5 class="h6 text-black  ">Adres</h5>
-                            <p class="text-black-50">{{ about.address|default:"Malatya, Türkiye" }}</p>
+                            <p class="text-black-50">{{ about.address|default:"Diyarbakır, Türkiye" }}</p>
                         </div>
                     </div>
                     

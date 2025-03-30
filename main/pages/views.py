@@ -14,7 +14,9 @@ def index(request):
 
 
 def about_us(request):
-    return render(request, 'pages/about_us.html')
+    about = About.objects.first()
+
+    return render(request, 'pages/about_us.html', context={"about": about})
 
 
 class ContactUsView(View):
