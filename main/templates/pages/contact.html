@@ -12,15 +12,18 @@
     </div>
 </div>
 
-{% include 'base/messages.html' %}
+<!-- Add Toastr CSS in the head section -->
+{% block extra_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+{% endblock %}
+
 
 <div class="section sec-contact" id="main">
     <div class="container">
         <div class="row mb-5 justify-content-center text-center">
             <div class="col-lg-5">
                 <h2 class="heading">İletişime Geçin</h2>
-                <p class="text-black-50">Far far away, behind the word mountains, far from the countries Vokalia and
-                    Consonantia, there live the blind texts.</p>
+              
             </div>
         </div>
 
@@ -62,12 +65,49 @@
                 </div>
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-12 d-flex justify-content-end    ">
                 <input type="submit" value="Mesajı İlet" class="btn btn-primary">
             </div>
         </form>
     </div>
 </div>
+
+{% block extra_js %}
+<!-- Add jQuery if not already included -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Add Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+<script>
+    // Configure toastr options
+    toastr.options = {
+        "closeButton": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000"
+    };
+    
+    // Display Django messages using toastr
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                toastr.success('{{ message }}', 'Başarılı!');
+            {% elif message.tags == 'warning' %}
+                toastr.warning('{{ message }}', 'Uyarı!');
+            {% elif message.tags == 'error' %}
+                toastr.error('{{ message }}', 'Hata!');
+            {% else %}
+                toastr.info('{{ message }}', 'Bilgi');
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {% endblock %}
+</script>
+
 
 
 {% endblock %}

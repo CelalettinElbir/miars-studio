@@ -30,10 +30,10 @@ class ContactUsView(View):
         if data["name"] and data["email"] and data["phone"] and data["subject"] and data["message"]:
             message.objects.create(name=data["name"], email=data["email"],
                                    phone_number=data["phone"], subject=data["subject"], message=data["message"])
-            messages.success(request, "Mesaj Başarıyla Oluşturuldu.")
-            return redirect('/contact-us#main')
+            messages.success(request, "Mesajınız başarıyla gönderildi.")
+            return redirect('contact')
         else:
-            messages.warning(request, "Mesaj Oluşturulamadı.")
+            messages.warning(request, "Tüm alanları doldurduğunuzdan emin olun.")
             return redirect("contact")
 
 
